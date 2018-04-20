@@ -1,0 +1,4 @@
+services:
+  veneer.node:
+    class: Drupal\veneer\VeneerNode
+    arguments: []

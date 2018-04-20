@@ -1,0 +1,6 @@
+name: 'Veneer'
+description: 'Site building development toolset.'
+type: module
+version: 1.0
+package: development
+core: 8.x

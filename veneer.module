@@ -1,0 +1,62 @@
+<?php
+/**
+ * @file
+ * Main veneer functions and hooks.
+ */
+
+const VENEER_TWIG_STATIC = 'VENEER_TWIG';
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function veneer_preprocess_html(&$variables) {
+  $twig = &drupal_static(VENEER_TWIG_STATIC);
+
+  if (isset($twig) && is_array($twig)) {
+    foreach ($twig as $name => $value) {
+      // Set variable as an array for generic node names.
+      if (strpos($name, 'veneer_node_') !== FALSE) {
+        $pieces = explode('_', $name);
+        $pieces_count = count($pieces);
+
+        switch ($pieces_count) {
+          // The $name is veneer_node_[id].
+          case 3:
+            $variables['veneer']['nodes'][$pieces[2]]['view'] = $value;
+            break;
+
+          // The $name is veneer_node_[id]_[field_name].
+          case 4:
+            $variables['veneer']['nodes'][$pieces[2]][$pieces[3]]['view'] = $value;
+            break;
+        }
+      }
+      else {
+        $variables[$name] = $value;
+      }
+    }
+  }
+}
+
+/**
+ * Utility function to stage items to be opened up to twig as variables.
+ *
+ * The items added should be items processed and rendered. These items
+ * are stored in memory until hook_preprocess_html().
+ *
+ * @todo allow name to be an array to group values {{ company.image }}.
+ *
+ * @param string $name
+ *   The name of the variable name.
+ * @param string $value
+ *   The value to set the variable as.
+ */
+function veneer_add_twig($name, $value) {
+  $twig = &drupal_static(VENEER_TWIG_STATIC);
+
+  if (!isset($twig)) {
+    $twig = [];
+  }
+
+  $twig[$name] = $value;
+}
