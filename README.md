@@ -4,7 +4,7 @@ Veneer
 What Is This?
 -------------
 
-This is a Drupal 8 module for site building developing purposes. It does not 
+This is a Drupal 8 module for site building development purposes. It does not 
 do anything on it's own when enabled. It provides several utility
 functions to a developer through the Services container.
 
@@ -26,7 +26,7 @@ Examples for Developers
 
 Below are variables syntax examples for the available services.
 
-###Node
+### Node
 ```
 /** @var \Drupal\veneer\VeneerNode $veneer_node */
 $veneer_node = \Drupal::service('veneer.node');
