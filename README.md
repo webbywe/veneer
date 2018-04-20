@@ -30,6 +30,9 @@ Below are variables syntax examples for the available services.
 ```
 /** @var \Drupal\veneer\VeneerNode $veneer_node */
 $veneer_node = \Drupal::service('veneer.node');
+
+// Or directly access the functions.
+\Drupal::service('veneer.node')->load($id)->render()
 ```
 
 Render the current node with default "full" display.
@@ -68,10 +71,14 @@ $veneer_node->field(‘body')->render();
 Roadmap
 -----------------------
 
-Place Veneer service functions into its own wrapper: 
+1. Place Veneer service functions into its own wrapper: 
 
 ```
 use Drupal\veneer\Veneer
 
 Veneer::node($id)->render();
-``
+```
+
+2. Add unit tests.
+
+3. Add more functions to access PITA data to retrieve. 
