@@ -2,3 +2,6 @@ services:
   veneer.node:
     class: Drupal\veneer\VeneerNode
     arguments: []
+  veneer.block:
+    class: Drupal\veneer\VeneerBlock
+    arguments: []

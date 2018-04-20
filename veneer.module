@@ -15,19 +15,19 @@ function veneer_preprocess_html(&$variables) {
   if (isset($twig) && is_array($twig)) {
     foreach ($twig as $name => $value) {
       // Set variable as an array for generic node names.
-      if (strpos($name, 'veneer_node_') !== FALSE) {
+      if (strpos($name, 'veneer_') !== FALSE) {
         $pieces = explode('_', $name);
         $pieces_count = count($pieces);
 
         switch ($pieces_count) {
           // The $name is veneer_node_[id].
           case 3:
-            $variables['veneer']['nodes'][$pieces[2]]['view'] = $value;
+            $variables['veneer'][$pieces[1] . 's'][$pieces[2]]['view'] = $value;
             break;
 
           // The $name is veneer_node_[id]_[field_name].
           case 4:
-            $variables['veneer']['nodes'][$pieces[2]][$pieces[3]]['view'] = $value;
+            $variables['veneer'][$pieces[1] . 's'][$pieces[2]][$pieces[3]]['view'] = $value;
             break;
         }
       }
