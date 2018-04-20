@@ -151,10 +151,6 @@ class VeneerNode implements VeneerEntityInterface {
     }
   }
 
-  public function output() {
-    echo 'test';
-  }
-
   /**
    * {@inheritdoc}
    */
