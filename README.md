@@ -1,15 +1,15 @@
-Veneer
+Veneer /vəˈnir/
 =======================
+
+An attractive appearance that covers or disguises something's true nature.
 
 What Is This?
 -------------
 
-This is a Drupal 8 module for site building development purposes. It does not 
-do anything on it's own when enabled. It provides several utility
-functions to a developer through the Services container.
-
-These examples are meant to show what is available.
-
+This is a Drupal 8 module for site building development purposes that is loosely
+based on the idea of a Facade pattern for Drupal. It does not do anything on 
+it's own when enabled. It provides several utility functions to a developer 
+through the Services container.
 
 How To Use The Examples
 -----------------------
