@@ -43,13 +43,27 @@ class VeneerNode implements VeneerEntityInterface {
    *
    * @var string
    */
-  protected $display = 'full';
+  protected $display = 'default';
 
   /**
    * {@inheritdoc}
    */
-  public function load($id = 0, $type = '') {
-    // Set to current node if $id is not set otherwise
+  public function load($param) {
+    $type = '';
+    $id = 0;
+
+    // Allow different options to pass param for loading.
+    if ($param instanceof NodeInterface) {
+      $this->node = $param;
+    } elseif (is_numeric($param)) {
+      $id = (int) $param;
+    } elseif (is_array($param)) {
+      foreach ($param as $key => $val) {
+        ${$key} = $val;
+      }
+    }
+
+    // Set to current node if $id is not set otherwise.
     if ($id === 0) {
       $node = \Drupal::routeMatch()->getParameter('node');
     }
@@ -59,12 +73,12 @@ class VeneerNode implements VeneerEntityInterface {
     }
 
     // Assure that the node is loaded and if not throw an exception.
-    if ($node instanceof NodeInterface) {
+    if ($node && $node instanceof NodeInterface) {
       $this->node = $node;
     }
 
     // Verify node is of right type.
-    if (!empty($type) && $node->bundle() == $type) {
+    if ($node && !empty($type) && $node->bundle() !== $type) {
       $this->node = FALSE;
     }
 

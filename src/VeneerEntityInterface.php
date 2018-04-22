@@ -16,13 +16,13 @@ interface VeneerEntityInterface extends VeneerBaseInterface {
   /**
    * Set the field name to perform interactions on.
    *
-   * @param $id
-   *   The name of the field.
+   * @param mixed $param
+   *   A differing set of params defined in class.
    *
    * @return \Drupal\veneer\VeneerEntityInterface
    *   $this.
    */
-  public function load($id);
+  public function load($param);
 
   /**
    * Set the field name to perform interactions on.
