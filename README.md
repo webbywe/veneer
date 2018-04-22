@@ -28,57 +28,53 @@ Below are variables syntax examples for the available services.
 
 ### Node
 ```
+use Drupal\veneer\Veneer;
+
+Veneer::node($id)->render();
+
+// Or access directly through Drupal Services.
+
 /** @var \Drupal\veneer\VeneerNode $veneer_node */
 $veneer_node = \Drupal::service('veneer.node');
-
-// Or directly access the functions.
-\Drupal::service('veneer.node')->load($id)->render()
+$veneer_node->load($id)->render();
 ```
 
 Render the current node with default "full" display.
 ```php 
-$veneer_node->render();
+Veneer::node()->render();
 ```
 
-Add the current node with default "full" display to twig as a generic Veneer variable.
+Add the current node with "default" display to twig as a generic Veneer variable.
 
 Syntax for Twig: ```{{ veneer.nodes.[id].view }}```
 ```php 
-$veneer_node->twig();
+Veneer::node()->twig();
 
 ```
 
 Render the current node and open a variable name "veneer_node" up to Twig.
 ```php 
-$veneer_node->twig(‘veneer_node');
+Veneer::node()->twig('veneer_node');
 ```
 
 Render a node by id with default "full" display and assure it's an "article".
 ```php 
-$veneer_node->load($id, 'article')->render();
+Veneer::node([id => $id, type => 'article'])->render();
 ```
 
 Render a node's teaser using a node id.
 ```php 
-$veneer_node->load($id)->display(’teaser')->render();
+Veneer::node($id)->display(’teaser')->render();
 ```
 
 Render the field of current node.
 ```php 
-$veneer_node->field(‘body')->render();
+Veneer::node()->field(‘body')->render();
 ```
 
-Roadmap
+TODO
 -----------------------
 
-1. Place Veneer service functions into its own wrapper: 
+1. Add unit tests.
 
-```
-use Drupal\veneer\Veneer
-
-Veneer::node($id)->render();
-```
-
-2. Add unit tests.
-
-3. Add more functions to access PITA data to retrieve. 
+2. Add more functions to access PITA data to retrieve. 
